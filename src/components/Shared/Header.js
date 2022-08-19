@@ -5,9 +5,9 @@ const Header = () => {
 
     const menuItems = <>
         <li className='text-primary'><Link to='/'>Home</Link></li>
-        <li className='text-primary'><Link to='/products'>Services</Link></li>
-        <li className='text-primary'><Link to='/client'>Blog</Link></li>
-        <li className='text-primary'><Link to='/review'>About</Link></li>
+        <li className='text-primary'><Link to='/services'>Services</Link></li>
+        <li className='text-primary'><Link to='/blogs'>Blog</Link></li>
+        <li className='text-primary'><Link to='/about'>About</Link></li>
     </>
 
 

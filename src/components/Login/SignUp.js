@@ -1,17 +1,22 @@
 import React from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { FcGoogle } from 'react-icons/fc';
 import { useForm } from 'react-hook-form';
+import Loading from '../Shared/Loading';
 
 
 const SignUp = () => {
 
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
     const [signInWithGoogle, userG, loadingG, errorG] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-    const navigate = useNavigate();
     const [
         createUserWithEmailAndPassword,
         user,
@@ -29,11 +34,17 @@ const SignUp = () => {
 
     let errorMessage;
 
+    if (user || userG) {
+        navigate(from, { replace: true });
+    }
+
     if (error || errorG || updateError) {
         errorMessage = <p className='text-orange-500'>{error?.message || errorG?.message || updateError?.message}</p>
     }
 
-
+    if (loading || loadingG || updating) {
+        <Loading></Loading>
+    }
 
     return (
         <div className="hero min-h-screen bg-white">

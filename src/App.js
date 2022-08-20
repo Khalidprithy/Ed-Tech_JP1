@@ -9,6 +9,7 @@ import Login from "./components/Login/Login";
 import NotFound from "./components/Shared/NotFound";
 import SignUp from "./components/Login/SignUp";
 import { Toaster } from "react-hot-toast";
+import RequireAuth from "./components/Shared/RequireAuth";
 
 function App() {
   return (
@@ -16,7 +17,11 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/services' element={<Services></Services>}></Route>
+        <Route path='/services' element={
+          <RequireAuth>
+            <Services></Services>
+          </RequireAuth>
+        }></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<Login></Login>} />

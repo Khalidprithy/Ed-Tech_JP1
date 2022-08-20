@@ -1,18 +1,19 @@
 import React from 'react';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { FcGoogle } from 'react-icons/fc';
 import auth from '../../firebase.init';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Loading from '../Shared/Loading';
 
 
 const Login = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const [signInWithGoogle, userG, loadingG, errorG] = useSignInWithGoogle(auth);
 
-    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(
-        auth
-    );
     const [
         signInWithEmailAndPassword,
         user,
@@ -32,7 +33,13 @@ const Login = () => {
         errorMessage = <p className='text-orange-500'>{error?.message || errorG?.message}</p>
     }
 
+    if (user || userG) {
+        navigate(from, { replace: true });
+    }
 
+    if (loading || loadingG) {
+        <Loading></Loading>
+    }
 
 
     return (

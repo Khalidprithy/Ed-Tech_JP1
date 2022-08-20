@@ -69,7 +69,7 @@ const Header = () => {
                             </div>
 
                             :
-                            <NavLink className='links' to="/login">Login</NavLink>
+                            <NavLink className='btn btn-primary btn-sm' to="/login">Login</NavLink>
 
                     }
 

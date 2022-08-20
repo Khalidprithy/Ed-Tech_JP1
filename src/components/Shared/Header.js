@@ -1,20 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import title from '../../images/EdTechTitle.png'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
 
+    const [user, setUser] = useAuthState(auth);
+
+    const handleSignOut = () => {
+        signOut(auth)
+            .then(() => {
+                setUser({})
+            })
+            .catch(error => {
+                setUser({});
+            })
+    }
+
+
     const menuItems = <>
-        <li className='text-primary'><Link to='/'>Home</Link></li>
-        <li className='text-primary'><Link to='/services'>Services</Link></li>
-        <li className='text-primary'><Link to='/blogs'>Blog</Link></li>
-        <li className='text-primary'><Link to='/about'>About</Link></li>
+        <li className='font-semibold text-gray-600'><Link to='/'>Home</Link></li>
+        <li className='font-semibold text-gray-600'><Link to='/services'>Services</Link></li>
+        <li className='font-semibold text-gray-600'><Link to='/blogs'>Blog</Link></li>
+        <li className='font-semibold text-gray-600'><Link to='/about'>About</Link></li>
     </>
 
 
     return (
         <div>
-            <div class="navbar bg-base-100">
+            <div class="navbar bg-neutral">
                 <div className="navbar-start flex-1">
                     <div className="dropdown">
                         <label tabIndex="0" className="btn btn-ghost md:hidden lg:hidden">
@@ -32,21 +48,31 @@ const Header = () => {
                     </ul>
                 </div>
                 <div class="flex-none">
-                    <div class="dropdown dropdown-end">
-                        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                            <div class="w-10 rounded-full">
-                                <img src="https://placeimg.com/80/80/people" />
+                    {
+                        user ?
+                            <div class="dropdown dropdown-end">
+                                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                                    <div class="w-10 rounded-full">
+                                        <img src="https://placeimg.com/80/80/people" alt='' />
+                                    </div>
+                                </label>
+                                <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <a class="justify-between">Profile</a>
+                                    </li>
+                                    <li>
+                                        <button
+                                            onClick={handleSignOut}
+                                            className='sign-out'>Sign out </button>
+                                    </li>
+                                </ul>
                             </div>
-                        </label>
-                        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <a class="justify-between">Profile</a>
-                            </li>
-                            <li>
-                                <a>Logout</a>
-                            </li>
-                        </ul>
-                    </div>
+
+                            :
+                            <NavLink className='links' to="/login">Login</NavLink>
+
+                    }
+
                 </div>
             </div>
         </div>

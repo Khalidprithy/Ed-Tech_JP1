@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import title from '../../images/EdTechTitle.png'
 
 const Header = () => {
 
@@ -23,10 +24,10 @@ const Header = () => {
                             {menuItems}
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-xl text-black">Ed-Tech</Link>
+                    <Link to='/' className="btn btn-ghost normal-case text-xl text-black"><img className='w-28' src={title} alt="" /></Link>
                 </div>
                 <div className="navbar-center hidden md:flex lg:flex-auto">
-                    <ul className="menu menu-horizontal p-0">
+                    <ul className="menu menu-horizontal p-0 md:pr-8">
                         {menuItems}
                     </ul>
                 </div>

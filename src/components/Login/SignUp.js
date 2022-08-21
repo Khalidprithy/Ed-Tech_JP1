@@ -9,7 +9,6 @@ import Loading from '../Shared/Loading';
 
 const SignUp = () => {
 
-
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -28,8 +27,6 @@ const SignUp = () => {
     const onSubmit = async data => {
         createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name })
-        console.log('Profile Updated');
-        // navigate('/')
     }
 
     let errorMessage;

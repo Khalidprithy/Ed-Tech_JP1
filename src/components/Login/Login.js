@@ -103,7 +103,7 @@ const Login = () => {
                                 <input className='btn w-full text-white' type="submit" value='Login' />
                             </form>
                             <div className='flex justify-center items-center'>
-                                <p className='text-white text-sm'>Doesn't have an account?<Link className='btn btn-link text-xs text-orange-500' to='/signup'>Sign Up</Link> </p>
+                                <p className='text-white text-sm'>Doesn't have an account?<Link className='btn btn-link text-xs text-green-500' to='/signup'>Sign Up</Link> </p>
                             </div>
                         </div>
                     </div>

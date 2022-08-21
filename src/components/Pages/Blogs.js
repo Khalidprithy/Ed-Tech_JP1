@@ -3,12 +3,12 @@ import React from 'react';
 const Blogs = () => {
     return (
         <div>
-            <div class="hero bg-[url(https://blog.smarterservices.com/hubfs/Blog%20Post%202.jpg)]" >
-                <div class="hero-overlay bg-opacity-30"></div>
-                <div class="hero-content text-left text-neutral-content">
-                    <div class="max-w-md">
-                        <h1 class="mb-5 text-4xl font-bold">Welcome to Ed-Tech Blog</h1>
-                        <p class="mb-5 text-white">Keep yourself updated with the latest tech and new course we are working with</p>
+            <div className="hero bg-[url(https://blog.smarterservices.com/hubfs/Blog%20Post%202.jpg)]" >
+                <div className="hero-overlay bg-opacity-30"></div>
+                <div className="hero-content text-left text-neutral-content">
+                    <div className="max-w-md">
+                        <h1 className="mb-5 text-4xl font-bold">Welcome to Ed-Tech Blog</h1>
+                        <p className="mb-5 text-white">Keep yourself updated with the latest tech and new course we are working with</p>
                     </div>
 
                 </div>
